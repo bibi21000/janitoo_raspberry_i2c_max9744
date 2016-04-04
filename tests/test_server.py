@@ -21,7 +21,7 @@ __license__ = """
 """
 __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
-__copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
+__copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -53,7 +53,7 @@ class TestPiSerser(JNTTServer, JNTTServerCommon):
     broker_user = 'toto'
     broker_password = 'toto'
     server_class = PiServer
-    server_conf = "tests/data/janitoo_raspberry_i2c_ads.conf"
+    server_conf = "tests/data/janitoo_raspberry_i2c_max9744.conf"
     hadds = [HADD%(144,0), HADD%(144,1)]
 
     def test_011_start_reload_stop(self):

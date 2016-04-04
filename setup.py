@@ -21,7 +21,7 @@ __license__ = """
 """
 __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
-__copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
+__copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
 from os import name as os_name
 from setuptools import setup, find_packages
@@ -55,7 +55,7 @@ data_files = []
 data_files_config(data_files, 'docs','src/docs/','*')
 
 setup(
-    name = 'janitoo_raspberry_i2c_ads1x15',
+    name = 'janitoo_raspberry_i2c_max9744',
     description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
     long_description = "A server which handle many controller (hardware, onewire, i2c, ...) dedicated to the raspberry",
     author='Sébastien GALLET aka bibi2100 <bibi21000@gmail.com>',
@@ -89,17 +89,17 @@ setup(
                      'janitoo_raspberry',
                      'janitoo_raspberry_i2c',
                      'Adafruit-GPIO',
-                     'Adafruit_ADS1x15',
+                     'Adafruit_MAX9744',
                     ],
     dependency_links = [
       'https://github.com/bibi21000/janitoo/archive/master.zip#egg=janitoo',
       'https://github.com/bibi21000/janitoo_raspberry/archive/master.zip#egg=janitoo_raspberry',
       'https://github.com/bibi21000/janitoo_raspberry_i2c/archive/master.zip#egg=janitoo_raspberry_i2c',
       'https://github.com/adafruit/Adafruit_Python_GPIO/archive/master.zip#egg=Adafruit-GPIO',
-      'https://github.com/adafruit/Adafruit_Python_ADS1x15/archive/master.zip#egg=Adafruit_ADS1x15',
+      'https://github.com/adafruit/Adafruit_Python_MAX9744/archive/master.zip#egg=Adafruit_MAX9744',
     ],
     entry_points = {    "janitoo.components": [
-        "rpii2c.ads = janitoo_raspberry_i2c_ads1x15.ads:make_ads",
+        "rpii2c.ads = janitoo_raspberry_i2c_max9744.max:make_max9744",
         ],
     },
 )

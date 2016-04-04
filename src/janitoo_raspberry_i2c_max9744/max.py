@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""The Raspberry bmp thread
-
-Server files using the http protocol
+"""The Raspberry max9744 thread
 
 """
 
@@ -24,7 +22,7 @@ __license__ = """
 """
 __author__ = 'Sébastien GALLET aka bibi21000'
 __email__ = 'bibi21000@gmail.com'
-__copyright__ = "Copyright © 2013-2014-2015 Sébastien GALLET aka bibi21000"
+__copyright__ = "Copyright © 2013-2014-2015-2016 Sébastien GALLET aka bibi21000"
 
 import logging
 logger = logging.getLogger(__name__)
@@ -39,7 +37,7 @@ from janitoo.value import JNTValue
 from janitoo.component import JNTComponent
 from janitoo_raspberry_i2c.bus_i2c import I2CBus
 
-from Adafruit_ADS1x15 import ADS1115
+from Adafruit_MAX9744 import MAX9744
 
 ##############################################################
 #Check that we are in sync with the official command classes
@@ -55,19 +53,19 @@ assert(COMMAND_DESC[COMMAND_WEB_RESOURCE] == 'COMMAND_WEB_RESOURCE')
 assert(COMMAND_DESC[COMMAND_DOC_RESOURCE] == 'COMMAND_DOC_RESOURCE')
 ##############################################################
 
-def make_ads(**kwargs):
-    return ADSComponent(**kwargs)
+def make_max9744(**kwargs):
+    return Max9744Component(**kwargs)
 
-class BNOComponent(JNTComponent):
+class Max9744Component(JNTComponent):
     """ A generic component for gpio """
 
     def __init__(self, bus=None, addr=None, **kwargs):
         """
         """
-        oid = kwargs.pop('oid', 'rpii2c.ads')
+        oid = kwargs.pop('oid', 'rpii2c.max9744')
         name = kwargs.pop('name', "Input")
-        product_name = kwargs.pop('product_name', "ADS")
-        product_type = kwargs.pop('product_type', "Analog to binary converter")
+        product_name = kwargs.pop('product_name', "Max9744")
+        product_type = kwargs.pop('product_type', "MAX9744 class D amplifier")
         product_manufacturer = kwargs.pop('product_manufacturer', "Janitoo")
         JNTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
                 product_name=product_name, product_type=product_type, product_manufacturer="Janitoo", **kwargs)
@@ -76,33 +74,12 @@ class BNOComponent(JNTComponent):
         uuid="addr"
         self.values[uuid] = self.value_factory['config_integer'](options=self.options, uuid=uuid,
             node_uuid=self.uuid,
-            help='The I2C address of the ADS component',
+            help='The I2C address of the MAX974 component',
             label='Addr',
-            default=0x77,
+            default=0x4B,
         )
-        uuid="data"
-        self.values[uuid] = self.value_factory['sensor_integer'](options=self.options, uuid=uuid,
-            node_uuid=self.uuid,
-            help='The data',
-            label='data',
-            get_data_cb=self.read_data,
-        )
-        poll_value = self.values[uuid].create_poll_value(default=300)
-        self.values[poll_value.uuid] = poll_value
 
         self.sensor = None
-
-    def read_data(self, node_uuid, index):
-        self._bus.i2c_acquire()
-        try:
-            data = self.sensor.read_temp()
-            ret = float(data)
-        except:
-            logger.exception('[%s] - Exception when retrieving temperature', self.__class__.__name__)
-            ret = None
-        finally:
-            self._bus.i2c_release()
-        return ret
 
     def check_heartbeat(self):
         """Check that the component is 'available'
@@ -118,7 +95,7 @@ class BNOComponent(JNTComponent):
         JNTComponent.start(self, mqttc, trigger_thread_reload_cb)
         self._bus.i2c_acquire()
         try:
-            self.sensor = ADS1115(address=self.values["addr"].data, i2c=self._bus._ada_i2c)
+            self.sensor = MAX9744(address=self.values["addr"].data, i2c=self._bus._ada_i2c)
         except:
             logger.exception("[%s] - Can't start component", self.__class__.__name__)
         finally:
