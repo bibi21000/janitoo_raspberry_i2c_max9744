@@ -99,7 +99,7 @@ setup(
       'https://github.com/adafruit/Adafruit_Python_MAX9744/archive/master.zip#egg=Adafruit_MAX9744',
     ],
     entry_points = {    "janitoo.components": [
-        "rpii2c.ads = janitoo_raspberry_i2c_max9744.max:make_max9744",
+        "rpii2c.max9744 = janitoo_raspberry_i2c_max9744.max:make_max9744",
         ],
     },
 )
