@@ -66,9 +66,8 @@ class Max9744Component(JNTComponent):
         name = kwargs.pop('name', "Input")
         product_name = kwargs.pop('product_name', "Max9744")
         product_type = kwargs.pop('product_type', "MAX9744 class D amplifier")
-        product_manufacturer = kwargs.pop('product_manufacturer', "Janitoo")
         JNTComponent.__init__(self, oid=oid, bus=bus, addr=addr, name=name,
-                product_name=product_name, product_type=product_type, product_manufacturer="Janitoo", **kwargs)
+                product_name=product_name, product_type=product_type, **kwargs)
         logger.debug("[%s] - __init__ node uuid:%s", self.__class__.__name__, self.uuid)
 
         uuid="addr"
