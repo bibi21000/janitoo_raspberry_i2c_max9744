@@ -1,0 +1,22 @@
+janitoo_raspberry_i2c_max9744 package
+=====================================
+
+Submodules
+----------
+
+janitoo_raspberry_i2c_max9744.max module
+----------------------------------------
+
+.. automodule:: janitoo_raspberry_i2c_max9744.max
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: janitoo_raspberry_i2c_max9744
+    :members:
+    :undoc-members:
+    :show-inheritance:

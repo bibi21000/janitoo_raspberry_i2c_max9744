@@ -1,0 +1,13 @@
+janitoo_raspberry_i2c_max9744 package
+=====================================
+
+Show janitoo's extensions.
+
+Core extensions
+---------------
+
+Components
+^^^^^^^^^^
+
+ - rpii2c.max9744 (janitoo_raspberry_i2c_max9744.max:make_max9744)
+
