@@ -1,13 +1,7 @@
-janitoo_raspberry_i2c_max9744 package
-=====================================
+Janitoo's extensions
+====================
 
-Show janitoo's extensions.
+This package contains the following extensions for Janitoo.
 
-Core extensions
----------------
-
-Components
-^^^^^^^^^^
-
- - rpii2c.max9744 (janitoo_raspberry_i2c_max9744.max:make_max9744)
+.. jnt-extensions::
 
