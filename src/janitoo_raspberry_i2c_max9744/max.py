@@ -93,7 +93,7 @@ class Max9744Component(JNTComponent):
         self._bus.i2c_acquire()
         try:
             self.sensor = MAX9744(address=self.values["addr"].data, i2c=self._bus._ada_i2c)
-        except:
+        except Exception:
             logger.exception("[%s] - Can't start component", self.__class__.__name__)
         finally:
             self._bus.i2c_release()
