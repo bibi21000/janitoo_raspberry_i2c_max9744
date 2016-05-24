@@ -53,6 +53,8 @@ assert(COMMAND_DESC[COMMAND_WEB_RESOURCE] == 'COMMAND_WEB_RESOURCE')
 assert(COMMAND_DESC[COMMAND_DOC_RESOURCE] == 'COMMAND_DOC_RESOURCE')
 ##############################################################
 
+from janitoo_raspberry_i2c import OID
+
 def make_max9744(**kwargs):
     return Max9744Component(**kwargs)
 
@@ -62,7 +64,7 @@ class Max9744Component(JNTComponent):
     def __init__(self, bus=None, addr=None, **kwargs):
         """
         """
-        oid = kwargs.pop('oid', 'rpii2c.max9744')
+        oid = kwargs.pop('oid', '%s.max9744'%OID)
         name = kwargs.pop('name', "Input")
         product_name = kwargs.pop('product_name', "Max9744")
         product_type = kwargs.pop('product_type', "MAX9744 class D amplifier")
